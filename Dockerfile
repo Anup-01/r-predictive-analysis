@@ -9,7 +9,6 @@ RUN apt-get update && apt-get install -y \
     libcairo2-dev \
     libxt-dev
 
-# Install necessary R packages
 RUN R -e "install.packages(c('ggplot2', 'rpart', 'rpart.plot', 'cluster', 'forecast', 'Cairo'), repos='http://cran.rstudio.com/')"
 
 # Copy your R script into the Docker container
