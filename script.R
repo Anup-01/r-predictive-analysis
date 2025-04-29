@@ -26,7 +26,12 @@ ggplot(mtcars, aes(x=wt, y=mpg, color=hp)) +
   ggtitle("Multiple Regression (MPG ~ Weight + HP)")
 dev.off()
 
-
+# 3. Decision Tree
+mtcars$mpg_level <- ifelse(mtcars$mpg > 20, "High", "Low")
+tree_model <- rpart(mpg_level ~ wt + hp + cyl, data=mtcars, method="class")
+CairoPNG("decision_tree.png", width=800, height=600)
+rpart.plot(tree_model, main="Decision Tree: MPG Level")
+dev.off()
 
 # 4. Clustering
 k <- kmeans(mtcars[,c("mpg", "wt", "hp")], centers = 3)
